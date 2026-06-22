@@ -64,16 +64,6 @@ parser.add_argument('--temporal-layers', type=int, default=1)
 args = parser.parse_args()
 
 
-# For reproductibility
-# RANDOM_SEED = 42
-# random.seed(RANDOM_SEED)
-# np.random.seed(RANDOM_SEED)
-# torch.manual_seed(RANDOM_SEED)
-# if torch.cuda.is_available():
-#     torch.cuda.manual_seed_all(RANDOM_SEED)
-#     torch.backends.cudnn.deterministic = True
-#     torch.backends.cudnn.benchmark = False
-
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 print(f"Using device: {device}")
 
@@ -210,8 +200,6 @@ def main(set):
                                              pin_memory=True)
     
 
-   
-    
 
     for epoch in range(start_epoch, args.epochs):
         inf = '********************' + str(epoch) + '********************'
@@ -412,8 +400,6 @@ def validate(val_loader, model, criterion, args, log_txt_path):
             computer_uar_war_val(val_loader, model, log_txt_path)
 
     return top1.avg, losses.avg
-
-
 
 def save_checkpoint(state, is_best, checkpoint_path, best_checkpoint_path):
     torch.save(state, checkpoint_path)
