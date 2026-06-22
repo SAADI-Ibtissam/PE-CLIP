@@ -96,28 +96,6 @@ if args.dataset == "FERV39K" or args.dataset == "DFEW":
     class_names_with_context = class_names_with_context_7
     class_descriptor = class_descriptor_7
 
-
-# def load_clip_to_cpu(args):
-#     backbone_name = args.model_name
-#     url = clip._MODELS[backbone_name]
-#     model_path = clip._download(url, root='./models')
-
-#     try:
-#         # loading JIT archive
-#         model = torch.jit.load(model_path, map_location="cpu").eval()
-#         state_dict = None
-
-#     except RuntimeError:
-#         state_dict = torch.load(model_path, map_location="cpu")
-#     design_details = {"trainer": 'MaPLe',
-#                       "vision_depth": 0,
-#                       "language_depth": 0, "vision_ctx": 0,
-#                       "language_ctx": 0,
-#                       "maple_length": args.num_cont}
-#     model = clip.build_model(state_dict or model.state_dict(), design_details)
-
-#     return model
-
 def load_clip_to_cpu(args):
     backbone_name = args.model_name
     
@@ -230,40 +208,6 @@ def mixup_or_fmix(data, targets, alpha_mixup=0.4, alpha_fmix=1.0, decay_power=3.
         mixed_data, mixed_targets = data, targets
         method = 'none'
     return mixed_data, mixed_targets, method
-
-
-# def mixup(data, target, alpha):
-#     indices = torch.randperm(data.size(0))
-#     shuffled_data = data[indices]
-#     shuffled_target = target[indices]
-
-#     lam = np.clip(np.random.beta(alpha, alpha),0.3,0.7)
-#     data = lam*data + (1-lam)*shuffled_data
-#     targets = (target, shuffled_target, lam)
-
-#     return data, targets
-
-# def mixup(x, y, alpha=1.0, use_cuda=True):
-#     '''Returns mixed inputs, pairs of targets, and lambda'''
-#     if alpha > 0:
-#         lam = np.random.beta(alpha, alpha)
-#     else:
-#         lam = 1
-
-#     batch_size = x.size()[0]
-#     if use_cuda:
-#         index = torch.randperm(batch_size).cuda()
-#     else:
-#         index = torch.randperm(batch_size)
-
-#     mixed_x = lam * x + (1 - lam) * x[index, :]
-#     y_a, y_b = y, y[index]
-#     return mixed_x, y_a, y_b, lam
-
-# def mixup_criterion(criterion, pred, y_a, y_b, lam):
-#     return lam * criterion(pred, y_a) + (1 - lam) * criterion(pred, y_b)
-
-
 
 
 def print_model_parameters(model):
@@ -417,39 +361,6 @@ def main(set):
 
     scheduler = CosineLRScheduler(optimizer, t_initial=30, warmup_t=3,
                                     warmup_lr_init=2e-5)
-#     scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
-#     optimizer,
-#     T_0=10,                 # Initial cycle length of 10 epochs
-#     T_mult=2,               # Doubling cycle length after each restart
-#     eta_min=2e-5            # Minimum learning rate to avoid overshooting
-# )
-   
-    # scheduler = CosineLRScheduler(
-    #         optimizer,
-    #         t_initial=30,
-    #         t_mul=getattr(args, 'lr_cycle_mul', 1.),
-    #         lr_min=3e-6,
-    #         decay_rate=0.5,
-    #         warmup_lr_init=3e-5,
-    #         warmup_t=3,
-    #         cycle_limit=getattr(args, 'lr_cycle_limit', 1),
-    #         t_in_epochs=True,
-    #         noise_pct=getattr(args, 'lr_noise_pct', 0.5),
-    #         noise_std=getattr(args, 'lr_noise_std', 1.),
-    #         noise_seed=getattr(args, 'seed', 42),
-    #     )
-        
-
-
-    #scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=30, T_mult=1, eta_min=2e-5)
-
-    # scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer,
-    #                                                   milestones=args.milestones,
-    #                                                   gamma=0.1)
-    # scheduler = torch.optim.lr_scheduler.LinearLR(optimizer, start_factor=1.0, end_factor=0.01,
-    #                                                       total_iters=500)
-
-   
         
     cudnn.benchmark = True
     
@@ -495,29 +406,6 @@ def main(set):
                                              num_workers=args.workers,
                                              pin_memory=True)
     
-#     scheduler = torch.optim.lr_scheduler.OneCycleLR(
-#     optimizer,
-#     max_lr=2.5e-4,             # Peak learning rate
-#     steps_per_epoch=len(train_loader),
-#     epochs=30,                 # Total number of epochs
-#     pct_start=0.3,             # 30% of the cycle increasing the learning rate
-#     anneal_strategy='cos',     # Cosine decay after reaching max_lr
-#     div_factor=25,             # Initial LR = max_lr / div_factor
-#     final_div_factor=10        # Final LR = max_lr / final_div_factor at the end of training
-# )
-    
-   
-    
-  # define scheduler
-    # def lr_func(step):
-    #   epoch = step / len(train_loader)
-    #   if epoch < args.warmup_epochs:
-    #     return epoch / args.warmup_epochs
-    #   else:
-    #     return 0.5 + 0.5 * math.cos((epoch - args.warmup_epochs) / (args.epochs - args.warmup_epochs) * math.pi)
-    # scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_func)
-
-
 
     for epoch in range(start_epoch, args.epochs):
         inf = '********************' + str(epoch) + '********************'
@@ -536,11 +424,6 @@ def main(set):
             f.write('Current learning rate: ' + str(current_learning_rate) + ' ' + str(current_learning_rate1)  +  '\n')
             print('Current learning rate: ', current_learning_rate, current_learning_rate1,)
             
-            #With combine loinear
-            # f.write('Current learning rate: ' + str(current_learning_rate) + ' ' + str(current_learning_rate1)  +  ' ' + str(current_learning_rate2)   +  ' ' + str(current_learning_rate3)  +  ' ' + str(current_learning_rate4) + '\n')
-            # print('Current learning rate: ', current_learning_rate, current_learning_rate1 , current_learning_rate2, current_learning_rate3, current_learning_rate4, )          
-            
-       
             
         # train for one epoch
         train_acc, train_los = train(train_loader, model, criterion, optimizer, epoch, args, log_txt_path)
@@ -609,10 +492,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args, log_txt_path):
                              [losses, top1],
                              prefix="Epoch: [{}]".format(epoch),
                              log_txt_path=log_txt_path)
-    
-    #cutmix = v2.CutMix(num_classes=NUM_CLASSES)
-    #mixup = MixUp(num_classes=NUM_CLASSES)
-    #cutmix_or_mixup = v2.RandomChoice([cutmix, mixup])
+
 
     # switch to train mode
     model.train()
@@ -639,9 +519,6 @@ def train(train_loader, model, criterion, optimizer, epoch, args, log_txt_path):
         else:
             loss = criterion(output, target)
 
-
-      
-      
         acc1, _ = accuracy(output, target, topk=(1, 5))
         losses.update(loss.item(), images.size(0))
         top1.update(acc1[0], images.size(0))
