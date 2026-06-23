@@ -1,41 +1,166 @@
-# PE-CLIP: Parameter-Efficient Fine-Tuning of Vision-Language Models for Dynamic Facial Expression Recognition
+# PE-CLIP: A Parameter-Efficient Fine-Tuning of Vision-Language Models for Dynamic Facial Expression Recognition
 
+<p align="center">
+  <img src="figures/architecture.png" width="900">
+</p>
 
+<p align="center">
+  <a href="PAPER_LINK">📄 Paper</a> •
+  <a href="#citation">📚 Citation</a>
+</p>
 
-This is the **official repository** for the [**paper**](https://dl.acm.org/doi/abs/10.1145/3786789) "*PE-CLIP: Parameter-Efficient Fine-Tuning of Vision-Language Models for Dynamic Facial Expression Recognition*".
+Official PyTorch implementation of the ACM TOMM 2026 paper:
 
-# PE-CLIP Architecture
-<div style="display: flex; justify-content: flex-start;">
-  <img width=680 src="figures/shuffarch.png"/>
-</div>
+**PE-CLIP: A Parameter-Efficient Fine-Tuning of Vision-Language Models for Dynamic Facial Expression Recognition**
 
-## Datasets ##
-- KMU-FED dataset from https://cvpr.kmu.ac.kr/KMU-FED.html
-- KDEF from https://kdef.se/download-2/index.html
+---
 
-### Preprocessing ###
--*For KMU-FED dataset*: 'python preprocess_kmu.py' to save the data in .h5 format, then, "KMU.py" to split the data into 10 folds. <Br/>
--*For KDEF dataset*: 'python preprocess_KDEF.py' to save the data in .h5 format, then, "KDEF.py" to split the data. <Br/>
+## 🔥 Highlights
 
-### Train and Test model for all 10 fold ###
-- *KMU-FED dataset*: python 10fold.py
-- *KDEF dataset*: python combinedmodelkdef.py --model Ourmodel --bs 32 --lr 0.0001
+- Parameter-efficient adaptation of CLIP for Dynamic Facial Expression Recognition (DFER).
+- Temporal Dynamic Adapter (TDA) for temporal modeling.
+- Shared Adapter (ShA) for visual-textual feature refinement.
+- Multi-modal Prompt Learning (MaPLe) with AU-guided textual descriptions.
+- Less than **6% trainable parameters** while maintaining competitive performance.
+- Evaluation on **DFEW**, **FERV39K**, and **AFEW**.
+- Includes visualization and explainability tools.
 
-### plot confusion matrix ###
-- python confmatrixkmu.py --model Ourmodel
-- python confmatrixkdef.py --model Ourmodel
+---
 
-###  KMU-FED Accurary     ###
-We use 10-fold Cross validation in the experiment.
-- Model：    ShuffViT-DFER ;       Average accuracy：  97.273%  <Br/>
+## 📖 Abstract
 
-###  KDEF Accurary     ###
-- Model：    ShuffViT-DFER ;       Accuracy：  92.441%  <Br/>
+Dynamic Facial Expression Recognition (DFER) remains challenging due to subtle temporal variations, limited training data, and the computational cost of adapting large Vision-Language Models (VLMs). PE-CLIP is a parameter-efficient framework that adapts CLIP for DFER using lightweight adapters and multi-modal prompt learning. The proposed framework introduces a Temporal Dynamic Adapter (TDA), a Shared Adapter (ShA), and AU-guided prompt learning to improve visual-language alignment while requiring only a small fraction of trainable parameters.
 
-### Confusion matrices ###
+---
 
-<div style="display: flex; justify-content: flex-start;">
-  <img width=400 src="figures/ok12.png"/>
-  <img width=400 src="figures/ok11.png"/>
-</div>
+## 📊 Results
 
+| Dataset | UAR (%) | WAR (%) |
+|----------|----------|----------|
+| DFEW | 62.82 | 74.04 |
+| FERV39K | 41.57 | 51.26 |
+| AFEW | 53.85 | 58.49 |
+
+<p align="center">
+  <img src="figures/performance_tradeoff.png" width="700">
+</p>
+
+---
+
+## 📂 Repository Structure
+
+```text
+PE-CLIP
+│
+├── annotation/           # Dataset annotations
+├── dataloader/           # Data loading utilities
+├── models/               # PE-CLIP architecture
+├── figures/              # README figures
+│
+├── FERPAmainmxp.py       # Training/testing script (DFEW/FERV39K)
+├── FERPAmainmxp_AFEW.py  # Training/testing script (AFEW)
+├── fmix.py               # FMix augmentation
+├── AttentionMap.py       # Attention map visualization
+├── vit_rollout.py        # Attention rollout visualization
+├── vit_grad_rollout.py   # Gradient rollout visualization
+└── T-SNE Visualization.py # Feature visualization
+```
+
+---
+
+## 🛠 Requirements
+
+Install dependencies using:
+
+```bash
+pip install -r requirements.txt
+```
+
+Main dependencies:
+
+- PyTorch
+- Torchvision
+- timm
+- einops
+- NumPy
+- scikit-learn
+- matplotlib
+- tqdm
+- thop
+
+---
+
+## 🚀 Training and Evaluation
+
+### DFEW / FERV39K
+
+```bash
+python FERPAmainmxp.py
+```
+
+### AFEW
+
+```bash
+python FERPAmainmxp_AFEW.py
+```
+
+Please update the dataset paths according to your local environment before running the scripts.
+
+---
+
+## 🔍 Visualization
+
+### Attention Maps
+
+```bash
+python AttentionMap.py
+```
+
+### Attention Rollout
+
+```bash
+python vit_rollout.py
+```
+
+### Gradient Attention Rollout
+
+```bash
+python vit_grad_rollout.py
+```
+
+### t-SNE Feature Visualization
+
+```bash
+python "T-SNE Visualization.py"
+```
+
+---
+
+## 📚 Citation
+
+```bibtex
+@article{saadi2026peclip,
+  title={PE-CLIP: A Parameter-Efficient Fine-Tuning of Vision-Language Models for Dynamic Facial Expression Recognition},
+  author={Saadi, Ibtissam and Hadid, Abdenour and Cunningham, Douglas W. and Taleb-Ahmed, Abdelmalik and El Hillali, Yassin},
+  journal={ACM Transactions on Multimedia Computing, Communications and Applications},
+  year={2026}
+}
+```
+
+---
+
+## 👩‍💻 Authors
+
+- Ibtissam Saadi
+- Abdenour Hadid
+- Douglas W. Cunningham
+- Abdelmalik Taleb-Ahmed
+- Yassin El Hillali
+
+---
+
+## 🙏 Acknowledgements
+
+This work was conducted within a cotutelle PhD program between BTU Cottbus-Senftenberg, Germany, and Université Polytechnique Hauts-de-France, France.
+
+If you find this repository useful, please consider giving it a ⭐.
