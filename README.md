@@ -9,6 +9,7 @@ Official PyTorch implementation of the ACM TOMM 2026 paper:
 <p align="center">
   <img src="figures/architecture.png" width="800">
 </p>
+
 ## 📖 Overview
 
 Dynamic Facial Expression Recognition (DFER) remains challenging due to subtle temporal variations, limited training data, and the computational cost of adapting large Vision-Language Models (VLMs). PE-CLIP is a parameter-efficient framework that adapts CLIP for DFER using lightweight adapters and multi-modal prompt learning. The proposed framework introduces a Temporal Dynamic Adapter (TDA), a Shared Adapter (ShA), and AU-guided prompt learning to improve visual-language alignment while requiring only a small fraction of trainable parameters.
