@@ -134,7 +134,7 @@ if __name__ == '__main__':
         backbone_name = args.model_name
         
         # Set the local path where you've saved the downloaded model
-        local_model_path = "F:\KmuProj2\Code4\models\ViT-B-16.pt"  # Update this path accordingly
+        local_model_path = "F:\..\..\models\ViT-B-16.pt"  # Update this path accordingly
 
         try:
             # Try to load the model as a TorchScript JIT archive
@@ -175,12 +175,8 @@ if __name__ == '__main__':
     model = torch.nn.DataParallel(model).to(device)
 
 
-  
-    #shufflenetww = torch.load('shufflnetw1_Ourmodel/1/Test_model.t7')
-    #efficientvitww = torch.load('efficientvitw2_Ourmodel/1/Test_model.t7')
-    ourmodel = torch.load('./log/fold1/Fullmodelbest/DFEW-2501041852GRUoursmodel-set1-model_best.pth')#Ours
-    #ourmodel = torch.load('./log/fold1/baseline/withaumaple/DFEW-2501051345firstconfgofAdap-set1-model_best.pth')#Baseline
-    #ourmodel = torch.load('./log/fold1/withoutTDA(sharedadapters/DFEW-2412280443withoutTDA-set1-model_best.pth')#Baseline+Sha
+    # set the best model path
+    ourmodel = torch.load('./bestmodle.pth')#Ours
   
     model.load_state_dict(ourmodel['state_dict'],strict=True) 
 
