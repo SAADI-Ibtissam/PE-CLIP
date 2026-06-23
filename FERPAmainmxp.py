@@ -100,7 +100,7 @@ def load_clip_to_cpu(args):
     backbone_name = args.model_name
     
     # Set the local path where you've saved the downloaded model
-    local_model_path = "D:\KmuProj2\Code4\models\ViT-B-16.pt"  # Update this path accordingly
+    local_model_path = "D:\..\..\models\ViT-B-16.pt"  # Update this path accordingly
 
     try:
         # Try to load the model as a TorchScript JIT archive
