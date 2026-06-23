@@ -2,15 +2,15 @@
 
 Official PyTorch implementation of the ACM TOMM 2026 paper:
 
-**PE-CLIP: A Parameter-Efficient Fine-Tuning of Vision-Language Models for Dynamic Facial Expression Recognition**
+**PE-CLIP: A Parameter-Efficient Fine-Tuning of Vision-Language Models for Dynamic Facial Expression Recognition** <p align="center">
+  <a href="https://dl.acm.org/doi/abs/10.1145/3786789">📄 Paper</a>
+</p>
 
 <p align="center">
   <img src="figures/architecture.png" width="900">
 </p>
 
-<p align="center">
-  <a href="https://dl.acm.org/doi/abs/10.1145/3786789">📄 Paper</a>
-</p>
+
 
 ---
 
