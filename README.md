@@ -7,32 +7,27 @@ Official PyTorch implementation of the ACM TOMM 2026 paper:
 </p>
 
 <p align="center">
-  <img src="figures/architecture.png" width="900">
+  <img src="figures/architecture.png" width="800">
 </p>
-
-
-
----
-
-## 🔥 Highlights
-
-- Parameter-efficient adaptation of CLIP for Dynamic Facial Expression Recognition (DFER).
-- Temporal Dynamic Adapter (TDA) for temporal modeling.
-- Shared Adapter (ShA) for visual-textual feature refinement.
-- Multi-modal Prompt Learning (MaPLe) with AU-guided textual descriptions.
-- Less than **6% trainable parameters** while maintaining competitive performance.
-- Evaluation on **DFEW**, **FERV39K**, and **AFEW**.
-- Includes visualization and explainability tools.
-
----
-
-## 📖 Abstract
+## 📖 Overview
 
 Dynamic Facial Expression Recognition (DFER) remains challenging due to subtle temporal variations, limited training data, and the computational cost of adapting large Vision-Language Models (VLMs). PE-CLIP is a parameter-efficient framework that adapts CLIP for DFER using lightweight adapters and multi-modal prompt learning. The proposed framework introduces a Temporal Dynamic Adapter (TDA), a Shared Adapter (ShA), and AU-guided prompt learning to improve visual-language alignment while requiring only a small fraction of trainable parameters.
 
 ---
 
-## 📊 Results
+## ✨ Highlights
+
+- 🎯 Parameter-efficient adaptation of CLIP for Dynamic Facial Expression Recognition (DFER).
+- ⏳ Temporal Dynamic Adapter (TDA) for effective temporal modeling.
+- 🔄 Shared Adapter (ShA) for efficient visual-textual feature refinement.
+- 🧠 Multi-modal Prompt Learning (MaPLe) with AU-guided textual descriptions.
+- ⚡ Less than **6% trainable parameters** while maintaining competitive performance.
+- 📊 Extensive evaluation on **DFEW**, **FERV39K**, and **AFEW** benchmarks.
+- 🔍 Includes visualization and explainability tools for model interpretation.
+
+---
+
+## 📊 Main Results
 
 | Dataset | UAR (%) | WAR (%) |
 |----------|----------|----------|
@@ -59,10 +54,8 @@ PE-CLIP
 ├── FERPAmainmxp.py       # Training/testing script (DFEW/FERV39K)
 ├── FERPAmainmxp_AFEW.py  # Training/testing script (AFEW)
 ├── fmix.py               # FMix augmentation
-├── AttentionMap.py       # Attention map visualization
-├── vit_rollout.py        # Attention rollout visualization
-├── vit_grad_rollout.py   # Gradient rollout visualization
-└── T-SNE Visualization.py # Feature visualization
+├── AttentionMap.py       # Explainability and attention visualization
+└── T-SNE Visualization.py # Feature embedding visualization
 ```
 
 ---
@@ -114,24 +107,14 @@ Please update the dataset paths according to your local environment before runni
 ```bash
 python AttentionMap.py
 ```
-
-### Attention Rollout
-
-```bash
-python vit_rollout.py
-```
-
-### Gradient Attention Rollout
-
-```bash
-python vit_grad_rollout.py
-```
+Generates attention maps, attention rollout, and gradient attention rollout visualizations for model interpretability.
 
 ### t-SNE Feature Visualization
 
 ```bash
 python "T-SNE Visualization.py"
 ```
+Visualizes learned feature embeddings using t-SNE.
 
 ---
 
@@ -145,21 +128,10 @@ python "T-SNE Visualization.py"
   year={2026}
 }
 ```
-
----
-
-## 👩‍💻 Authors
-
-- Ibtissam Saadi
-- Abdenour Hadid
-- Douglas W. Cunningham
-- Abdelmalik Taleb-Ahmed
-- Yassin El Hillali
-
 ---
 
 ## 🙏 Acknowledgements
 
-This work was conducted within a cotutelle PhD program between BTU Cottbus-Senftenberg, Germany, and Université Polytechnique Hauts-de-France, France.
+This work builds upon the excellent open-source projects [DFER-CLIP](https://github.com/zengqunzhao/DFER-CLIP), [CLIP](https://github.com/openai/CLIP), and [MaPLe](https://github.com/muzairkhattak/multimodal-prompt-learning). We sincerely thank the authors for making their code publicly available.
 
 If you find this repository useful, please consider giving it a ⭐.
