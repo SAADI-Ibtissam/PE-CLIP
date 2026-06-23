@@ -37,7 +37,7 @@ Dynamic Facial Expression Recognition (DFER) remains challenging due to subtle t
 | AFEW | 53.85 | 58.49 |
 
 <p align="center">
-  <img src="figures/performance_tradeoff.png" width="700">
+  <img src="figures/efficiency.png" width="700">
 </p>
 
 ---
