@@ -55,8 +55,8 @@ PE-CLIP
 ├── FERPAmainmxp.py       # Training/testing script (DFEW/FERV39K)
 ├── FERPAmainmxp_AFEW.py  # Training/testing script (AFEW)
 ├── fmix.py               # FMix augmentation
-├── AttentionMap.py       # Explainability and attention visualization
-└── T-SNE Visualization.py # Feature embedding visualization
+├── attentionmap.py       # Explainability and attention visualization
+└── tsne_visualization.py # Feature embedding visualization
 ```
 
 ---
