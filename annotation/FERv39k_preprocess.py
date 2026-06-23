@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from glob import glob
 
-FERV39K_SOURCE = "Code4/FERV39K"
+FERV39K_SOURCE = "./FERV39K"
 CLIP_SOURCE = os.path.join(FERV39K_SOURCE, "2_ClipsforFaceCrop")
 
 def process_annotations(annotation_file, is_train=True):
