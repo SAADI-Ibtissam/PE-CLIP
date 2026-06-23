@@ -28,8 +28,8 @@ def update(file, old_str, new_str):
 
 # --- YOUR CONFIG (same variables, just works now) ---
 # --- Example of AFEW dataset --- #
-old_path = "Code4/AFEWdataset/AFEW_Face_Retina"
-new_path = "D:/KmuProj2/Code4/AFEWdataset/AFEW_Face_Retina"
+old_path = "./datasets/AFEWdataset/AFEW_Face_Retina"
+new_path = "D:/../../AFEWdataset/AFEW_Face_Retina"
 
 # Find all text files (current folder). If needed, use recursive: glob('**/AFEW_*.txt', recursive=True)
 all_txt_files = glob('AFEW_*.txt')
