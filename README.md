@@ -106,14 +106,14 @@ Please update the dataset paths according to your local environment before runni
 ### Attention Maps
 
 ```bash
-python AttentionMap.py
+python attentionmap.py
 ```
 Generates attention maps, attention rollout, and gradient attention rollout visualizations for model interpretability.
 
 ### t-SNE Feature Visualization
 
 ```bash
-python "T-SNE Visualization.py"
+python "tsne_visualization.py"
 ```
 Visualizes learned feature embeddings using t-SNE.
 
