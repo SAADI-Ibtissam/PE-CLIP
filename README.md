@@ -121,11 +121,12 @@ Visualizes learned feature embeddings using t-SNE.
 ## 📚 Citation
 
 ```bibtex
-@article{saadi2026peclip,
-  title={PE-CLIP: A Parameter-Efficient Fine-Tuning of Vision-Language Models for Dynamic Facial Expression Recognition},
-  author={Saadi, Ibtissam and Hadid, Abdenour and Cunningham, Douglas W. and Taleb-Ahmed, Abdelmalik and El Hillali, Yassin},
+@article{saadi2025pe,
+  title={PE-CLIP: A Parameter-Efficient Fine-Tuning of Vision Language Models for Dynamic Facial Expression Recognition},
+  author={Saadi, Ibtissam and Hadid, Abdenour and Cunningham, Douglas W and Taleb-Ahmed, Abdelmalik and El Hillali, Yassin},
   journal={ACM Transactions on Multimedia Computing, Communications and Applications},
-  year={2026}
+  year={2025},
+  publisher={ACM New York, NY}
 }
 ```
 ---
