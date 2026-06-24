@@ -24,7 +24,6 @@ Dynamic Facial Expression Recognition (DFER) remains challenging due to subtle t
 - 🧠 Multi-modal Prompt Learning (MaPLe) with AU-guided textual descriptions.
 - ⚡ Less than **6% trainable parameters** while maintaining competitive performance.
 - 📊 Extensive evaluation on **DFEW**, **FERV39K**, and **AFEW** benchmarks.
-- 🔍 Includes visualization and explainability tools for model interpretation.
 
 ---
 
